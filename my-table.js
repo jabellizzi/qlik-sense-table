@@ -1,5 +1,22 @@
 export default window.define([], function(){
 
+  // ========== Definition Properties ==========
+  var definitionProps = {
+    type: 'items',
+    component: 'accordion',
+    items: {
+      backgroundColor: { // This is where we define background color
+        type: 'string',
+        ref: 'backgroundColor',
+        label: 'Background Color'
+      },
+      settings: { // This is the Qlik Appearance settings
+        uses: 'settings'
+      }
+    }
+  }
+
+
   // ========== Initial Properties ==========
   var initialProps = {
     backgroundColor: 'lightblue'
@@ -17,6 +34,7 @@ export default window.define([], function(){
 
   // ========== Return Properties ==========
   return {
+    definition: definitionProps,
     initialProperties: initialProps,
     paint: paintFunc
   }
