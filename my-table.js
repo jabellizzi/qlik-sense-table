@@ -1,3 +1,9 @@
 export default window.define([], function(){
-  return {}
+  var paintFunc = function($element){
+    // Paint goes here..
+  }
+
+  return {
+    paint: paintFunc
+  }
 })
