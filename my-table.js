@@ -5,6 +5,16 @@ export default window.define([], function(){
     type: 'items',
     component: 'accordion',
     items: {
+      dimensions: { // Qlik Dimensions
+        uses: 'dimensions',
+        min: 1,
+        max: 1
+      },
+      measures: { // Qlik Measures
+        uses: 'measures',
+        min: 1,
+        max: 1
+      },
       backgroundColor: { // This is where we define background color
         type: 'string',
         ref: 'backgroundColor',
@@ -19,7 +29,19 @@ export default window.define([], function(){
 
   // ========== Initial Properties ==========
   var initialProps = {
-    backgroundColor: 'lightblue'
+    backgroundColor: 'lightblue', // Background Color
+    qHyperCubeDef: { // HyperCubeDef
+      qDimensions: [],
+      qMeasures: [],
+      qInitialDataFetch: [
+        {
+          qTop: 0, 
+          qLeft: 0,
+          qWidth: 2,
+          qHeight: 10
+        }
+      ]
+    }
   }
 
   
