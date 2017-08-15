@@ -12,8 +12,8 @@ export default window.define([], function(){
       },
       measures: { // Qlik Measures
         uses: 'measures',
-        min: 1,
-        max: 1
+        min: 2,
+        max: 2
       },
       backgroundColor: { // This is where we define background color
         type: 'string',
@@ -37,7 +37,7 @@ export default window.define([], function(){
         {
           qTop: 0, 
           qLeft: 0,
-          qWidth: 2,
+          qWidth: 3,
           qHeight: 10
         }
       ]
@@ -48,9 +48,39 @@ export default window.define([], function(){
   // ========== Paint ==========
   var paintFunc = function($element, layout){
     // Paint goes here..
+    $element.html('');
 
     /* Use the backgroundColor property in layout to paint background */
-    $element[0].style.backgroundColor = layout.backgroundColor;
+    $element.css('background-color', layout.backgroundColor);
+
+
+    // Create Table
+    var table = document.createElement('table');
+    // Create Header Row
+    var headerRow = document.createElement('tr');
+
+    // Create and append header cells
+    var qDimensionInfo = layout.qHyperCube.qDimensionInfo;
+    var qMeasureInfo = layout.qHyperCube.qMeasureInfo;
+
+    /* Loop through dimension labels and append to header row */
+    for(var i = 0; i < qDimensionInfo.length; i++){
+      var th = document.createElement('th');
+      th.innerHTML = qDimensionInfo[i].qFallbackTitle;
+      headerRow.appendChild(th);
+    }
+    /* Loop through measure labels and append to header row */
+    for(var i = 0; i < qMeasureInfo.length; i++){
+      var th = document.createElement('th');
+      th.innerHTML = qMeasureInfo[i].qFallbackTitle;
+      headerRow.appendChild(th);
+    }
+
+
+    // Append Header Row to table
+    table.appendChild(headerRow);
+    // Append table to main element
+    $element.append(table);
   }
 
 
