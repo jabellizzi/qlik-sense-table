@@ -65,20 +65,45 @@ export default window.define([], function(){
 
     /* Loop through dimension labels and append to header row */
     for(var i = 0; i < qDimensionInfo.length; i++){
-      var th = document.createElement('th');
-      th.innerHTML = qDimensionInfo[i].qFallbackTitle;
-      headerRow.appendChild(th);
+      var th = document.createElement('th'); // create <th> element
+      th.innerHTML = qDimensionInfo[i].qFallbackTitle; // add html text to element
+      headerRow.appendChild(th); // append <th> to header row
     }
     /* Loop through measure labels and append to header row */
     for(var i = 0; i < qMeasureInfo.length; i++){
-      var th = document.createElement('th');
-      th.innerHTML = qMeasureInfo[i].qFallbackTitle;
-      headerRow.appendChild(th);
+      var th = document.createElement('th'); // create <th> element
+      th.innerHTML = qMeasureInfo[i].qFallbackTitle; // add html text to element
+      headerRow.appendChild(th); // append <th> to header row
+    }
+  
+    // Append Header Row to table
+    table.appendChild(headerRow);
+
+
+    // Create Body Rows
+    var qMatrix = layout.qHyperCube.qDataPages[0].qMatrix;
+    // Loop through each row in qMatrix
+    for(var i = 0; i < qMatrix.length; i++){
+      // Create a table row for each row in qMatrix
+      var bodyRow = document.createElement('tr');
+
+      var rowData = qMatrix[i];
+      // Loop through each cell in this row
+      for(var j = 0; j < rowData.length; j++){
+        // for each cell, create a <td> element
+        var td = document.createElement('td');
+        // then give it some html text
+        td.innerHTML = rowData[j].qText;
+
+        // then append it to the bodyRow
+        bodyRow.appendChild(td);
+      }
+
+      // Append bodyRow to table
+      table.appendChild(bodyRow);
     }
 
 
-    // Append Header Row to table
-    table.appendChild(headerRow);
     // Append table to main element
     $element.append(table);
   }
