@@ -1,0 +1,7 @@
+{
+  "name": "my-table",
+  "description": "Custom Qlik Sense Table",
+  "type": "visualization",
+  "version": "0.1.0",
+  "author": "John Bellizzi"
+}
