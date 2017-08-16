@@ -1,4 +1,4 @@
-export default window.define([], function(){
+define([], function(){
   
   // ========== Return Properties ==========
   return {}
