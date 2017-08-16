@@ -5,7 +5,7 @@ define(['text!./my-table.css'], function(cssText){
   style.innerHTML = cssText;
   // Append <style element to document <head>
   document.querySelector('head').appendChild(style);
-  
+
 
   // ========== Definition Properties ==========
   var definitionProps = {
@@ -54,6 +54,8 @@ define(['text!./my-table.css'], function(cssText){
   
   // ========== Paint ==========
   var paintFunc = function($element, layout){
+    var backendApi = this.backendApi;
+
     // Paint goes here..
     $element.html('');
 
@@ -93,6 +95,8 @@ define(['text!./my-table.css'], function(cssText){
     for(var i = 0; i < qMatrix.length; i++){
       // Create a table row for each row in qMatrix
       var bodyRow = document.createElement('tr');
+      bodyRow.classList.add('selectable');
+      bodyRow.setAttribute('elem-no', qMatrix[i][0].qElemNumber);
 
       var rowData = qMatrix[i];
       // Loop through each cell in this row
@@ -113,6 +117,13 @@ define(['text!./my-table.css'], function(cssText){
 
     // Append table to main element
     $element.append(table);
+
+
+    // Click Events
+    $('.selectable').on('click', function(){
+      var elementNumber = +this.getAttribute('elem-no')
+      backendApi.selectValues(0, [elementNumber], true);
+    })
   }
 
 
