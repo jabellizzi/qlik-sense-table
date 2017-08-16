@@ -1,4 +1,11 @@
-export default window.define([], function(){
+define(['text!./my-table.css'], function(cssText){
+  // Create <style> element
+  var style = document.createElement('style');
+  // Add css text
+  style.innerHTML = cssText;
+  // Append <style element to document <head>
+  document.querySelector('head').appendChild(style);
+  
 
   // ========== Definition Properties ==========
   var definitionProps = {
